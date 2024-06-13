@@ -17,24 +17,24 @@ class Book {
     required this.synopsis
   });
 
-  factory Book.fromJson(Map<String, dynamic> json) {
-    return switch (json) {
-      {'id': int id, 
-      'isbn': String isbn, 
-      'title': String title, 
-      'author': String author,
-      'publisher': String publisher,
-      'year': int year,
-      'synopsis': String synopsis
-      } => Book(id: id, 
-      isbn: isbn, 
-      title: title, 
-      author: author, 
-      publisher: publisher, 
-      year: year, 
-      synopsis: synopsis),
-      
-      _ => throw const FormatException("Failed to load a book :("),
+  factory Book.fromJson(Map<String, dynamic> json) => Book(
+    id: json['id'], 
+    isbn: json['isbn'], 
+    title: json['title'], 
+    author: json['author'], 
+    publisher: json['publisher'], 
+    year: json['year'], 
+    synopsis: json['synopsis']);
+
+  Map toJson() {
+    return {
+      'id': id,
+      'isbn': isbn,
+      'title': title,
+      'author': author,
+      'publisher': publisher,
+      'year': year,
+      'synopsis': synopsis,
     };
   }
 }
